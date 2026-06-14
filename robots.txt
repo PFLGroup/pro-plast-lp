@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://pflgroup.github.io/pro-plast-lp/sitemap.xml
