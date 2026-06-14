@@ -802,3 +802,12 @@ dialog.lightbox:not([open]){ display:none; }
 body{ -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none; -webkit-tap-highlight-color:transparent; }
 input,textarea,select,[contenteditable]{ -webkit-user-select:text; -moz-user-select:text; -ms-user-select:text; user-select:text; }
 img{ -webkit-user-drag:none; user-drag:none; }
+
+
+/* ====== Fix 2: nav bez zawijania tekstu (przyciski na jednej linii) ====== */
+.nav__link,.nav .cta-nav,.nav .btn{white-space:nowrap;}
+
+/* ====== Fix 2b: lista zalet .bullets — ptaszek OBOK tekstu ====== */
+ul.bullets{list-style:none;padding:0;margin:0;}
+ul.bullets li{display:flex;gap:.7rem;align-items:center;}
+ul.bullets .check-ic{margin-top:0;flex:none;}
