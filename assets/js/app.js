@@ -424,3 +424,35 @@
     });
   })();
 })();
+
+
+/* ====== Ochrona (PFL): blokada nieautoryzowanej domeny + deterrenty kopiowania ====== */
+(function(){
+  var ALLOWED = ["pflgroup.github.io","pro-plast.com.pl","www.pro-plast.com.pl","localhost","127.0.0.1",""];
+  var host = (location.hostname||"").toLowerCase();
+  if (ALLOWED.indexOf(host) === -1){
+    try{
+      var paint = function(){
+        document.documentElement.innerHTML =
+          '<div style="position:fixed;inset:0;background:#12161c;color:#e6e8ec;font-family:Manrope,Arial,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;z-index:2147483647">' +
+          '<div style="font-size:1.1rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:.8rem">Nieautoryzowana kopia</div>' +
+          '<div style="max-width:560px;color:#a8b1bd;font-size:.9rem;line-height:1.8">Ta strona należy do <b style="color:#e8a34d">Pro-Plast / PFL Group</b> i została uruchomiona poza autoryzowaną domeną. Kopiowanie i wykorzystywanie bez pisemnej zgody jest zabronione.</div>' +
+          '<a href="https://www.pflgroup.pl/" style="margin-top:1.4rem;color:#e8a34d;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;border:1px solid rgba(232,163,77,.4);padding:.7rem 1.2rem">pflgroup.pl</a></div>';
+        document.title = "Nieautoryzowana kopia — PFL Group";
+      };
+      if (document.body) paint(); else document.addEventListener("DOMContentLoaded", paint);
+    }catch(e){}
+    throw new Error("PFL: unauthorized host");
+  }
+  function inField(t){ return !!t && /^(input|textarea|select)$/i.test(t.tagName||""); }
+  document.addEventListener("contextmenu", function(e){ e.preventDefault(); }, true);
+  document.addEventListener("dragstart", function(e){ if(e.target && e.target.tagName==="IMG") e.preventDefault(); }, true);
+  ["copy","cut"].forEach(function(ev){ document.addEventListener(ev, function(e){ if(inField(e.target)) return; e.preventDefault(); }, true); });
+  document.addEventListener("keydown", function(e){
+    var k=(e.key||"").toLowerCase(); var m=e.ctrlKey||e.metaKey;
+    if(e.key==="F12"){ e.preventDefault(); return; }
+    if(m && e.shiftKey && (k==="i"||k==="j"||k==="c")){ e.preventDefault(); return; }
+    if(m && (k==="u"||k==="s"||k==="p")){ if(inField(e.target) && k!=="u") return; e.preventDefault(); }
+  }, true);
+  try{ console.log("%c© Pro-Plast / PFL Group — kod chroniony.","color:#c0843a;font-family:monospace"); }catch(_){}
+})();

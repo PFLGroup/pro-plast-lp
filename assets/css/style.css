@@ -779,3 +779,26 @@ dialog.lightbox::backdrop { background: rgba(8,11,15,.86); backdrop-filter: blur
 .mt-1{margin-top:.6rem;} .mt-2{margin-top:1.2rem;} .mt-3{margin-top:2rem;}
 .w-full{width:100%;}
 .sr-only { position:absolute; width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0; }
+
+
+/* ====== Nawigacja: trzymaj treść w gutterze (nie dotykaj rogów) — jak sekcje .wrap ====== */
+.nav__inner{ width: min(100% - var(--gutter)*2, var(--maxw)) !important; margin-inline: auto !important; }
+
+/* ====== Lista zalet: ptaszek OBOK tekstu (nie tylko w sekcji .energy) ====== */
+ul.checks{ list-style:none; padding:0; margin:0; }
+ul.checks li{ display:flex; gap:.7rem; align-items:center; }
+ul.checks .check-ic{ margin-top:0; }
+
+/* ====== Lightbox realizacji: wyśrodkuj zdjęcie na ekranie (nie lewy górny róg) ====== */
+dialog.lightbox{ position:fixed; inset:0; width:100vw; height:100dvh; max-width:100vw; max-height:100dvh; margin:0; border:0; padding:clamp(1rem,4vw,3rem); background:rgba(8,11,15,.92); }
+dialog.lightbox[open]{ display:flex !important; align-items:center; justify-content:center; }
+dialog.lightbox:not([open]){ display:none; }
+.lightbox__frame{ margin:auto; }
+
+/* ====== Zdjęcia kafli/realizacji zawsze wyśrodkowane (nie lewy górny róg) ====== */
+.gtile img, .ocard__img img, .energy__detail img, .ba__img img, .config__preview img, .frame img{ object-position:center !important; }
+
+/* ====== Ochrona treści (PFL) — deterrenty kopiowania ====== */
+body{ -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none; -webkit-tap-highlight-color:transparent; }
+input,textarea,select,[contenteditable]{ -webkit-user-select:text; -moz-user-select:text; -ms-user-select:text; user-select:text; }
+img{ -webkit-user-drag:none; user-drag:none; }
