@@ -811,3 +811,22 @@ img{ -webkit-user-drag:none; user-drag:none; }
 ul.bullets{list-style:none;padding:0;margin:0;}
 ul.bullets li{display:flex;gap:.7rem;align-items:center;}
 ul.bullets .check-ic{margin-top:0;flex:none;}
+
+
+/* ============================================================
+   MOBILE FIX (telefon) — nachodzenie tekstu/menu/ramek + galeria
+   ============================================================ */
+@media (max-width: 760px){
+  /* HERO: treść poniżej paska, nie pod menu */
+  .hero{ min-height:auto !important; align-items:flex-start !important; padding-top: calc(var(--nav-h) + 1.4rem) !important; padding-bottom: 2rem !important; }
+  /* PAGE-HERO: odstęp od paska + nie wciskaj treści za wysoko */
+  .page-hero{ padding-top: calc(var(--nav-h) + 1rem) !important; }
+  /* Ukryj dekoracyjne ramki szprosów (nachodzą na tekst na wąskim ekranie) */
+  .hero__grid, .page-hero__grid, .ctaband__grid, .raty-card__grid{ display:none !important; }
+  /* Galeria realizacji: 1 kolumna — bez pustych miejsc */
+  .gal__grid{ grid-template-columns:1fr !important; grid-auto-rows:230px !important; grid-auto-flow:row !important; }
+  .gtile--w2{ grid-column:auto !important; }
+  .gtile--h2{ grid-row:auto !important; }
+  /* Karty oferty: opis bez brzydkiego ucięcia */
+  .ocard__body p{ display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+}
