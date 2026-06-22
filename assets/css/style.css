@@ -261,6 +261,43 @@ ul { list-style: none; padding: 0; }
 .burger { display: none; }
 .nav .cta-nav { display: inline-flex; }
 
+/* ---- nav dropdown (Okna / Drzwi) ---- */
+.nav__item { position: relative; display: flex; align-items: center; }
+.nav__item--has-sub > .nav__link--parent { display: inline-flex; align-items: center; gap: .28rem; }
+.nav__caret { width: 15px; height: 15px; transition: transform .3s var(--ease); }
+.nav__item--has-sub:hover .nav__caret,
+.nav__item--has-sub:focus-within .nav__caret { transform: rotate(180deg); }
+.nav__sub {
+  position: absolute; top: calc(100% + 9px); left: 0; min-width: 252px;
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md); padding: .5rem; display: grid; gap: .1rem;
+  opacity: 0; visibility: hidden; transform: translateY(8px);
+  transition: opacity .25s var(--ease), transform .25s var(--ease), visibility .25s;
+  z-index: 70;
+}
+.nav__item--has-sub:hover .nav__sub,
+.nav__item--has-sub:focus-within .nav__sub { opacity: 1; visibility: visible; transform: translateY(0); }
+/* invisible bridge so hover doesn't drop across the gap */
+.nav__item--has-sub::after { content:""; position:absolute; top:100%; left:0; right:0; height:11px; }
+.nav__sublink {
+  padding: .62rem .85rem; border-radius: 9px; font-weight: 600; font-size: .92rem;
+  color: var(--ink-soft); white-space: nowrap; transition: background .2s, color .2s;
+}
+.nav__sublink:hover, .nav__sublink[aria-current="page"] { background: var(--surface-2); color: var(--accent); }
+/* dropdown panel keeps surface colours even over the hero (white-text nav) */
+.nav:not(.is-scrolled) .nav__sub .nav__sublink { color: var(--ink-soft); }
+.nav:not(.is-scrolled) .nav__sub .nav__sublink:hover,
+.nav:not(.is-scrolled) .nav__sub .nav__sublink[aria-current="page"] { color: var(--accent); }
+
+/* drawer: nested sub-links under a group */
+.drawer a.d-group { border-bottom: 0; padding-bottom: .35rem; }
+.drawer a.d-sublink { font-size: .98rem; font-weight: 600; padding: .5rem .4rem .5rem 1.2rem; color: var(--ink-soft); border-bottom: 1px solid var(--line-soft); }
+.drawer a.d-sublink::before { content: "—"; opacity: .4; margin-right: .5rem; }
+
+/* hub sub-page card grid */
+.offer__grid--sub { grid-auto-rows: 260px; }
+@media (max-width: 900px){ .offer__grid--sub { grid-auto-rows: 220px; } }
+
 /* ============================================================
    HERO
    ============================================================ */
