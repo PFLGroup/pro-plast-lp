@@ -670,9 +670,9 @@ dialog.lightbox::backdrop { background: rgba(8,11,15,.86); backdrop-filter: blur
 .page-hero__grid::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:1.5px;background:rgba(255,255,255,.22);}
 [data-theme="dark"] .page-hero__grid{border-color:rgba(232,163,77,.3);} [data-theme="dark"] .page-hero__grid::before{background:rgba(232,163,77,.24);}
 .page-hero__inner { position:relative; z-index:3; }
-.page-hero h1 { font-family:var(--serif); font-weight:500; font-size: clamp(2.2rem,6vw,4.4rem); line-height:1; letter-spacing:-.015em; margin:.6rem 0 .7rem; max-width:18ch; text-shadow:0 2px 24px rgba(0,0,0,.35); }
+.page-hero h1 { font-family:var(--serif); font-weight:500; font-size: clamp(1.55rem,3.6vw,2.7rem); line-height:1.12; letter-spacing:-.01em; margin:0 0 .7rem; max-width:24ch; text-shadow:0 2px 24px rgba(0,0,0,.35); }
 .page-hero h1 em{ font-style:italic; color:var(--amber); }
-.page-hero p { max-width:52ch; color:rgba(255,255,255,.9); }
+.page-hero p { max-width:54ch; font-size: clamp(.92rem,1.2vw,1.05rem); color:rgba(255,255,255,.9); }
 
 .crumbs { display:flex; flex-wrap:wrap; gap:.4rem; font-size:.84rem; color:rgba(255,255,255,.78); }
 .crumbs a:hover { color:#fff; }
