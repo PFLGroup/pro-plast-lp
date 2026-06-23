@@ -867,3 +867,40 @@ ul.bullets .check-ic{margin-top:0;flex:none;}
   /* Karty oferty: opis bez brzydkiego ucięcia */
   .ocard__body p{ display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
 }
+
+/* ============================================================
+   KARTY MODELI (linie produktowe — realne przekroje profili) + figura
+   ============================================================ */
+.pcard-grid{ display:grid; gap:clamp(1rem,2vw,1.4rem); grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr)); }
+.pcard{ display:flex; flex-direction:column; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow-sm); transition:transform .35s var(--ease),box-shadow .35s var(--ease); color:inherit; }
+.pcard:hover{ transform:translateY(-4px); box-shadow:var(--shadow-md); }
+.pcard__media{ aspect-ratio:4/3; background:#F1ECE2; display:grid; place-items:center; padding:1.1rem; border-bottom:1px solid var(--line-soft); }
+.pcard__media img{ width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 10px 20px rgba(21,25,31,.16)); }
+.pcard__body{ padding:clamp(1rem,2vw,1.4rem); display:flex; flex-direction:column; gap:.4rem; flex:1; }
+.pcard__tag{ align-self:flex-start; font-family:var(--serif); font-weight:600; font-size:.9rem; color:var(--accent-2); background:color-mix(in srgb,var(--accent-2) 13%,transparent); padding:.18rem .65rem; border-radius:999px; }
+.pcard__t{ font-family:var(--serif); font-weight:600; font-size:clamp(1.2rem,2vw,1.55rem); line-height:1.1; }
+.pcard__d{ font-size:.9rem; color:var(--ink-mute); flex:1; }
+.pcard__go{ display:inline-flex; align-items:center; gap:.4rem; margin-top:.4rem; font-weight:700; font-size:.9rem; color:var(--link); }
+.pcard__go svg{ width:18px; height:18px; transition:transform .3s var(--ease); }
+.pcard:hover .pcard__go svg{ transform:translateX(5px); }
+
+.product-figure{ margin:0 0 1.8rem; }
+.product-figure__media{ background:#F1ECE2; border:1px solid var(--line); border-radius:var(--radius-lg); padding:clamp(1rem,3vw,2rem); display:grid; place-items:center; box-shadow:var(--shadow-sm); }
+.product-figure__media img{ max-height:430px; width:auto; max-width:100%; object-fit:contain; filter:drop-shadow(0 14px 26px rgba(21,25,31,.18)); }
+.product-figure figcaption{ margin-top:.6rem; font-size:.84rem; color:var(--ink-mute); text-align:center; }
+
+/* ============================================================
+   RESPONSIVE HARDENING — koniec poziomego „rozjeżdżania"
+   ============================================================ */
+html{ overflow-x:clip; }
+h1,h2,h3,h4,h5,.h-display,.hero h1,.page-hero h1,.prose h2,.prose h3,.ocard__t,.pcard__t,.ctaband h2,.raty-card h3,.section-head .h-display,.crumbs{
+  overflow-wrap:break-word; hyphens:auto;
+}
+.spec-grid{ grid-template-columns:repeat(auto-fit,minmax(min(100%,140px),1fr)); }
+.uw-row{ grid-template-columns:clamp(72px,26%,120px) 1fr auto; }
+.uw-row__name{ overflow-wrap:break-word; }
+/* przełącz na menu mobilne wcześniej — bez ścisku paska na tabletach */
+@media (max-width:1024px){
+  .nav__menu, .nav .lang, .nav .cta-nav{ display:none; }
+  .burger{ display:grid; }
+}
