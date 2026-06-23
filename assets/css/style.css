@@ -257,6 +257,10 @@ ul { list-style: none; padding: 0; }
 .lang a { padding: .25rem .4rem; border-radius: 6px; color: var(--ink-mute); transition: color .2s, background .2s; }
 .lang a[aria-current="true"], .lang a:hover { color: var(--ink); background: var(--surface-2); }
 .lang span { color: var(--line); }
+/* czytelność przełącznika języka NAD HERO: białe etykiety z cieniem, a AKTYWNY język
+   ciemny tekst na jasnej plakietce (inaczej biały-na-jasnym zlewa się w jasnym motywie) */
+.nav:not(.is-scrolled) .lang a { text-shadow: 0 1px 6px rgba(0,0,0,.55); }
+.nav:not(.is-scrolled) .lang a[aria-current="true"] { color: var(--ink); text-shadow: none; }
 
 .burger { display: none; }
 .nav .cta-nav { display: inline-flex; }
