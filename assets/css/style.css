@@ -53,7 +53,7 @@
   --radius: 18px;
   --radius-lg: 26px;
   --radius-sm: 12px;
-  --nav-h: 86px;
+  --nav-h: 92px;
   --ease: cubic-bezier(.22,.61,.36,1);
   --ease-out: cubic-bezier(.16,1,.3,1);
 }
@@ -206,7 +206,7 @@ ul { list-style: none; padding: 0; }
 .nav:not(.is-scrolled) .nav__link,
 .nav:not(.is-scrolled) .brand__name,
 .nav:not(.is-scrolled) .icon-btn,
-.nav:not(.is-scrolled) .lang a { color: #fff; }
+.nav:not(.is-scrolled) .langdd__btn { color: #fff; }
 .nav:not(.is-scrolled) .brand__sub { color: rgba(255,255,255,.72); }
 
 .brand { display: flex; align-items: center; gap: .7rem; margin-right: auto; }
@@ -253,14 +253,48 @@ ul { list-style: none; padding: 0; }
 [data-theme="dark"] #themeToggle .i-sun { display: none; }
 [data-theme="dark"] #themeToggle .i-moon { display: block; }
 
-.lang { display: flex; align-items: center; gap: .1rem; font-size: .8rem; font-weight: 700; }
-.lang a { padding: .25rem .4rem; border-radius: 6px; color: var(--ink-mute); transition: color .2s, background .2s; }
-.lang a[aria-current="true"], .lang a:hover { color: var(--ink); background: var(--surface-2); }
-.lang span { color: var(--line); }
-/* czytelność przełącznika języka NAD HERO: białe etykiety z cieniem, a AKTYWNY język
-   ciemny tekst na jasnej plakietce (inaczej biały-na-jasnym zlewa się w jasnym motywie) */
-.nav:not(.is-scrolled) .lang a { text-shadow: 0 1px 6px rgba(0,0,0,.55); }
-.nav:not(.is-scrolled) .lang a[aria-current="true"] { color: var(--ink); text-shadow: none; }
+/* przełącznik języka — rozwijany dropdown (globus + aktualny język, wybór z listy) */
+.lang { display: flex; align-items: center; }
+.langdd { position: relative; }
+.langdd__btn {
+  display: inline-flex; align-items: center; gap: .45rem;
+  padding: .44rem .62rem; border-radius: 10px;
+  font-size: .82rem; font-weight: 700; letter-spacing: .02em;
+  color: var(--ink-soft); background: transparent; border: 1px solid var(--line);
+  cursor: pointer; transition: color .2s, background .2s, border-color .2s;
+}
+.langdd__btn:hover { color: var(--ink); background: var(--surface-2); }
+.langdd__globe { width: 17px; height: 17px; flex: none; opacity: .9; }
+.langdd__cur { text-transform: uppercase; }
+.langdd__caret { width: 13px; height: 13px; flex: none; transition: transform .25s var(--ease); }
+.langdd[data-open="true"] .langdd__caret { transform: rotate(180deg); }
+.langdd__menu {
+  position: absolute; top: calc(100% + .5rem); right: 0;
+  min-width: 176px; padding: .35rem;
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: 13px; box-shadow: var(--shadow-md);
+  display: grid; gap: .12rem; z-index: 80;
+  opacity: 0; visibility: hidden; transform: translateY(-6px);
+  transition: opacity .2s var(--ease), transform .2s var(--ease), visibility .2s;
+}
+.langdd[data-open="true"] .langdd__menu { opacity: 1; visibility: visible; transform: translateY(0); }
+.langdd__opt {
+  display: flex; align-items: center; gap: .55rem;
+  padding: .52rem .66rem; border-radius: 9px;
+  font-size: .86rem; font-weight: 600; color: var(--ink-soft);
+  transition: color .15s, background .15s;
+}
+.langdd__opt:hover { color: var(--ink); background: var(--surface-2); }
+.langdd__opt[aria-current="true"] { color: var(--accent); font-weight: 800; background: var(--surface-2); }
+.langdd__code { margin-left: auto; font-size: .66rem; letter-spacing: .14em; color: var(--ink-mute); }
+/* nad hero (nav nieprzewinięty): jasny przycisk z cieniem dla czytelności */
+.nav:not(.is-scrolled) .langdd__btn { border-color: rgba(255,255,255,.5); text-shadow: 0 1px 6px rgba(0,0,0,.5); }
+.nav:not(.is-scrolled) .langdd__btn:hover { background: rgba(255,255,255,.15); }
+/* w szufladzie mobilnej: pełna szerokość, menu rozwija się w pionie (bez nakładki) */
+.drawer .langdd, .drawer .langdd__btn { width: 100%; }
+.drawer .langdd__btn { justify-content: flex-start; }
+.drawer .langdd__menu { position: static; right: auto; transform: none; box-shadow: none; margin-top: .45rem; min-width: 0; display: none; }
+.drawer .langdd[data-open="true"] .langdd__menu { display: grid; opacity: 1; visibility: visible; }
 
 .burger { display: none; }
 .nav .cta-nav { display: inline-flex; }
@@ -934,9 +968,9 @@ h1,h2,h3,h4,h5,.h-display,.hero h1,.page-hero h1,.prose h2,.prose h3,.ocard__t,.
 .h-display em, .hero h1 em, .page-hero h1 em { font-style: normal; }
 .h-display, .hero h1, .page-hero h1 { letter-spacing: -.02em; }
 /* większe logo + wordmark „Pro-Plast" obok w jednej linii */
-.brand { gap: .9rem; }
-.brand__logo { height: 58px !important; }
-.footer .brand__logo { height: 66px !important; }
-.brand__name { font-size: 1.5rem; white-space: nowrap; letter-spacing: .005em; }
+.brand { gap: 1rem; }
+.brand__logo { height: 72px !important; }
+.footer .brand__logo { height: 80px !important; }
+.brand__name { font-size: 1.65rem; white-space: nowrap; letter-spacing: .005em; }
 .brand__sub { white-space: nowrap; }
-@media (max-width:620px){ .brand__logo{ height: 46px !important; } .brand__name{ font-size: 1.2rem; } }
+@media (max-width:620px){ .brand__logo{ height: 54px !important; } .brand__name{ font-size: 1.3rem; } }

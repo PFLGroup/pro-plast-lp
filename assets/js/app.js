@@ -423,6 +423,43 @@
         .catch(function () { setNote(msgErr, "err"); });
     });
   })();
+
+  /* -----------------------------------------------------------
+     13. LANGUAGE dropdown (klik rozwija listę, wybór języka)
+     ----------------------------------------------------------- */
+  (function langDropdown() {
+    var dds = $$("[data-langdd]");
+    if (!dds.length) return;
+
+    function setOpen(dd, open) {
+      dd.setAttribute("data-open", open ? "true" : "false");
+      var b = $(".langdd__btn", dd);
+      if (b) b.setAttribute("aria-expanded", open ? "true" : "false");
+    }
+    function closeAll(except) {
+      dds.forEach(function (dd) { if (dd !== except) setOpen(dd, false); });
+    }
+
+    dds.forEach(function (dd) {
+      var btn = $(".langdd__btn", dd);
+      if (!btn) return;
+      btn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        var open = dd.getAttribute("data-open") === "true";
+        closeAll(dd);
+        setOpen(dd, !open);
+      });
+    });
+
+    document.addEventListener("click", function (e) {
+      var inside = false;
+      dds.forEach(function (dd) { if (dd.contains(e.target)) inside = true; });
+      if (!inside) closeAll(null);
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeAll(null);
+    });
+  })();
 })();
 
 
