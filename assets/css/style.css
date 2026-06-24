@@ -5,7 +5,7 @@
    ============================================================= */
 
 /* ---------- Fonts ---------- */
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Manrope:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
 
 /* ---------- Tokens / Theme ---------- */
 :root {
@@ -44,7 +44,7 @@
   --nav-glass:   rgba(247,243,236,.78);
 
   /* type */
-  --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --serif: 'Space Grotesk', 'Manrope', system-ui, -apple-system, sans-serif;
   --sans:  'Manrope', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 
   /* metrics */
@@ -927,3 +927,16 @@ h1,h2,h3,h4,h5,.h-display,.hero h1,.page-hero h1,.prose h2,.prose h3,.ocard__t,.
 .brand__logo img{ height:100%; width:auto; display:block; }
 .footer .brand__logo{ height:56px; }
 @media (max-width:620px){ .brand__logo{ height:40px; } }
+
+/* ============================================================
+   NOWOCZESNA CZCIONKA (Space Grotesk z v2 → produkcja) + większe logo z nazwą w jednej linii
+   ============================================================ */
+.h-display em, .hero h1 em, .page-hero h1 em { font-style: normal; }
+.h-display, .hero h1, .page-hero h1 { letter-spacing: -.02em; }
+/* większe logo + wordmark „Pro-Plast" obok w jednej linii */
+.brand { gap: .9rem; }
+.brand__logo { height: 58px !important; }
+.footer .brand__logo { height: 66px !important; }
+.brand__name { font-size: 1.5rem; white-space: nowrap; letter-spacing: .005em; }
+.brand__sub { white-space: nowrap; }
+@media (max-width:620px){ .brand__logo{ height: 46px !important; } .brand__name{ font-size: 1.2rem; } }
